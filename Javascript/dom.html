@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body class="w-100 h-100 p-5">
+    <form id="myfrm" class="h-auto shadow-lg bg-white rounded-3 mx-auto p-3 " style="width: 400px;">
+        <h2 class="text-center ">Form Data </h2>
+        <div>
+            <label  class="from-label fs-5" for="">User Data</label>
+            <input id="UserName" type=" " class="form-control" placeholder="UserName">
+
+        </div>
+        <div>
+            <label class="form-label fs-5"  for="">Password</label>
+            <input id="Password" type="text" class="form-control" placeholder="Password">
+        </div>
+        <div>
+            <label class="form-label fs-5" for="">Email</label>
+        <input id="Email" type="text" class="form-control" placeholder="email@gmail.com">
+
+        </div>
+        
+        <button type="submit" class="btn btn-primary mt-3 w-100" >Submit</button>
+    </form>
+    <table class="mt-4 container table-striped">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Userpassord</th>
+                <th>UserEmail</th>
+            </tr>
+        </thead>
+        <tbody id="get-data"></tbody>
+
+    </table>
+    
+    
+</body>
+</html>
+<script src="./dom.js"></script>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+   <script>
+        const input = prompt("Enter a number (N):");
+        const n = parseInt(input, 10);
+
+        const out = document.getElementById('result');
+        if (Number.isNaN(n)) {
+            out.textContent = 'Invalid number.';
+        } else if (n < 2) {
+            out.textContent = `No even numbers up to ${n}.`;
+        } else {
+            let sum = 0;
+            for (let v = 2; v <= n; v += 2) {
+                sum += v;
+            }
+            out.innerHTML = `<h1>Number: ${n}</h1><h2>Sum (2+4+...≤${n}): ${sum}</h2>`;
+        }
+    </script>

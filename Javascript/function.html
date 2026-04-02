@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // Function Return
+    function Sum (){
+        let a = 10;
+        let b = 20;
+        return a + b;
+    }
+    function Sum2(){
+        let c = 30;
+        return c * Sum();
+    }
+    document.write(`<h1>Sum: ${Sum()}</h1>`);
+    document.write(`<h1>Sum2: ${Sum2()}</h1>`);
+    // Function Non retuern
+    function Sum3(){
+        let x = 30;
+        let y = 40;
+        let resulth = x*y;
+        document.write(`<h1>Sum ${resulth}`)
+    }
+    // Function have Parameter
+     function Myfn(txt){
+        document.write("<h1>"+txt+"</h1>") 
+    }
+    // call function
+     Myfn("hello world");//agument Value to func
+     Myfn(100)
+     function Myfn2(x,y){
+        return paraseInt(x)+parseInt(y);
+
+     }
+     document.write("<h1> From Myfn2 :"+Myfn2("100",200)+"</h1>" );
+
+
+</script>

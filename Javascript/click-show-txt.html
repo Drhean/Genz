@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body class="w-100 h-100">
+    <h1 id="txt" >Hello Element</h1>
+    <button id="btn-click" class="btn btn-primary">Click</button>
+    <h2 id="show-text" class="text-center text-danger"></h2>
+    
+</body>
+</html>
+<script>
+    const text = "hello";
+    document.getElementById('txt').innerText =text
+    let check = true
+    document.getElementById('btn-click').addEventListener("click",()=>{
+        if(check===true){
+            document.getElementById("show-text").innerText = "Welcome";
+            check=false;
+
+        }else{
+            document.getElementById("show-text").innerText = "";
+            check=true;
+        }
+    })
+
+
+</script>

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Java Learning Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0c10;
+    --surface: #111318;
+    --surface2: #181c24;
+    --border: #2a2f3d;
+    --java-orange: #f89820;
+    --java-red: #e03c2f;
+    --accent-blue: #4ea8de;
+    --accent-green: #56d98a;
+    --accent-purple: #b57bee;
+    --text: #e8eaf0;
+    --muted: #6b7385;
+    --line: #2a2f3d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background Grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(248,152,32,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(248,152,32,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(248,152,32,0.12);
+    border: 1px solid rgba(248,152,32,0.35);
+    color: var(--java-orange);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 10vw, 96px);
+    letter-spacing: 4px;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--java-orange) 0%, var(--java-red) 60%, #ff6b35 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 14px;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+
+  /* FLOW */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* NODE */
+  .node {
+    width: 100%;
+    max-width: 560px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .node-inner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    cursor: default;
+  }
+
+  .node-inner::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+
+  .node-inner:hover {
+    transform: translateX(4px);
+    box-shadow: -4px 0 24px rgba(0,0,0,0.4);
+  }
+
+  /* Accent colors per phase */
+  .phase-start .node-inner { border-color: rgba(248,152,32,0.5); box-shadow: 0 0 24px rgba(248,152,32,0.08); }
+  .phase-start .node-inner::before { background: var(--java-orange); }
+  .phase-start .node-inner:hover { border-color: var(--java-orange); box-shadow: -4px 0 28px rgba(248,152,32,0.2); }
+
+  .phase-beginner .node-inner { border-color: rgba(78,168,222,0.4); }
+  .phase-beginner .node-inner::before { background: var(--accent-blue); }
+  .phase-beginner .node-inner:hover { border-color: var(--accent-blue); box-shadow: -4px 0 28px rgba(78,168,222,0.15); }
+
+  .phase-intermediate .node-inner { border-color: rgba(86,217,138,0.4); }
+  .phase-intermediate .node-inner::before { background: var(--accent-green); }
+  .phase-intermediate .node-inner:hover { border-color: var(--accent-green); box-shadow: -4px 0 28px rgba(86,217,138,0.15); }
+
+  .phase-advanced .node-inner { border-color: rgba(181,123,238,0.4); }
+  .phase-advanced .node-inner::before { background: var(--accent-purple); }
+  .phase-advanced .node-inner:hover { border-color: var(--accent-purple); box-shadow: -4px 0 28px rgba(181,123,238,0.15); }
+
+  .phase-expert .node-inner { border-color: rgba(224,60,47,0.5); }
+  .phase-expert .node-inner::before { background: var(--java-red); }
+  .phase-expert .node-inner:hover { border-color: var(--java-red); box-shadow: -4px 0 28px rgba(224,60,47,0.18); }
+
+  .node-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .phase-start .node-tag     { color: var(--java-orange); }
+  .phase-beginner .node-tag  { color: var(--accent-blue); }
+  .phase-intermediate .node-tag { color: var(--accent-green); }
+  .phase-advanced .node-tag  { color: var(--accent-purple); }
+  .phase-expert .node-tag    { color: var(--java-red); }
+
+  .node-title {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .node-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    border: 1px solid;
+    transition: opacity 0.2s;
+  }
+  .phase-start .pill     { background: rgba(248,152,32,0.08); border-color: rgba(248,152,32,0.25); color: rgba(248,152,32,0.9); }
+  .phase-beginner .pill  { background: rgba(78,168,222,0.08); border-color: rgba(78,168,222,0.25); color: rgba(78,168,222,0.9); }
+  .phase-intermediate .pill { background: rgba(86,217,138,0.08); border-color: rgba(86,217,138,0.25); color: rgba(86,217,138,0.9); }
+  .phase-advanced .pill  { background: rgba(181,123,238,0.08); border-color: rgba(181,123,238,0.25); color: rgba(181,123,238,0.9); }
+  .phase-expert .pill    { background: rgba(224,60,47,0.08); border-color: rgba(224,60,47,0.25); color: rgba(224,60,47,0.9); }
+
+  /* CONNECTOR */
+  .connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 4px 0;
+  }
+
+  .conn-line {
+    width: 1px;
+    height: 24px;
+    background: linear-gradient(to bottom, var(--border), rgba(255,255,255,0.15));
+  }
+
+  .conn-diamond {
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid var(--muted);
+    transform: rotate(45deg);
+    background: var(--bg);
+  }
+
+  .conn-line2 {
+    width: 1px;
+    height: 10px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15), transparent);
+  }
+
+  /* BRANCH */
+  .branch-wrap {
+    width: 100%;
+    max-width: 760px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .branch-label {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .branch-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (max-width: 580px) {
+    .branch-cols { grid-template-columns: 1fr; }
+  }
+
+  .branch-node {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .branch-node:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+
+  .branch-node::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .bn-web::after      { background: linear-gradient(90deg, #4ea8de, #56d98a); }
+  .bn-mobile::after   { background: linear-gradient(90deg, #f89820, #e03c2f); }
+  .bn-backend::after  { background: linear-gradient(90deg, #b57bee, #4ea8de); }
+  .bn-data::after     { background: linear-gradient(90deg, #56d98a, #b57bee); }
+
+  .branch-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .bn-web .branch-tag      { color: #4ea8de; }
+  .bn-mobile .branch-tag   { color: var(--java-orange); }
+  .bn-backend .branch-tag  { color: var(--accent-purple); }
+  .bn-data .branch-tag     { color: var(--accent-green); }
+
+  .branch-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .branch-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .bp {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--muted);
+    background: rgba(255,255,255,0.03);
+  }
+
+  /* END NODE */
+  .end-node {
+    width: 100%;
+    max-width: 560px;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .end-inner {
+    background: linear-gradient(135deg, rgba(248,152,32,0.1), rgba(224,60,47,0.1));
+    border: 1px solid rgba(248,152,32,0.4);
+    border-radius: 6px;
+    padding: 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .end-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(248,152,32,0.08) 0%, transparent 70%);
+  }
+
+  .end-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--java-orange), var(--java-red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+
+  .end-sub {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Staggered delays */
+  .node:nth-child(1), .branch-wrap:nth-child(1), .end-node:nth-child(1) { animation-delay: 0.1s; }
+  .delay-1  { animation-delay: 0.15s; }
+  .delay-2  { animation-delay: 0.25s; }
+  .delay-3  { animation-delay: 0.35s; }
+  .delay-4  { animation-delay: 0.45s; }
+  .delay-5  { animation-delay: 0.55s; }
+  .delay-6  { animation-delay: 0.65s; }
+  .delay-7  { animation-delay: 0.75s; }
+  .delay-8  { animation-delay: 0.85s; }
+  .delay-9  { animation-delay: 0.95s; }
+  .delay-10 { animation-delay: 1.05s; }
+  .delay-11 { animation-delay: 1.15s; }
+
+  /* Step number */
+  .step-num {
+    position: absolute;
+    top: 18px; right: 18px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    line-height: 1;
+    opacity: 0.06;
+    color: var(--text);
+    letter-spacing: 1px;
+    pointer-events: none;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="badge">Learning Roadmap</div>
+    <h1>Java</h1>
+    <p class="subtitle">From absolute zero to production-ready developer</p>
+  </header>
+
+  <!-- FLOW -->
+  <div class="flow">
+
+    <!-- STEP 1 -->
+    <div class="node phase-start delay-1">
+      <div class="node-inner">
+        <span class="step-num">01</span>
+        <div class="node-tag">Phase 01 -- Foundation</div>
+        <div class="node-title">Setup Your Environment</div>
+        <div class="node-items">
+          <span class="pill">Install JDK 21+</span>
+          <span class="pill">IntelliJ IDEA / VS Code</span>
+          <span class="pill">Git + GitHub</span>
+          <span class="pill">First Hello World</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="conn-line"></div><div class="conn-diamond"></div><div class="conn-line2"></div></div>
+
+    <!-- STEP 2 -->
+    <div class="node phase-beginner delay-2">
+      <div class="node-inner">
+        <span class="step-num">02</span>
+        <div class="node-tag">Phase 02 -- Beginner</div>
+        <div class="node-title">Core Java Syntax</div>
+        <div class="node-items">
+          <span class="pill">Variables &amp; Types</span>
+          <span class="pill">Operators</span>
+          <span class="pill">Control Flow</span>
+          <span class="pill">Loops</span>
+          <span class="pill">Arrays</span>
+          <span class="pill">String Manipulation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="conn-line"></div><div class="conn-diamond"></div><div class="conn-line2"></div></div>
+
+    <!-- STEP 3 -->
+    <div class="node phase-beginner delay-3">
+      <div class="node-inner">
+        <span class="step-num">03</span>
+        <div class="node-tag">Phase 03 -- Beginner</div>
+        <div class="node-title">Object-Oriented Programming</div>
+        <div class="node-items">
+          <span class="pill">Classes &amp; Objects</span>
+          <span class="pill">Constructors</span>
+          <span class="pill">Encapsulation</span>
+          <span class="pill">Inheritance</span>
+          <span class="pill">Polymorphism</span>
+          <span class="pill">Abstraction</span>
+          <span class="pill">Interfaces</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="conn-line"></div><div class="conn-diamond"></div><div class="conn-line2"></div></div>
+
+    <!-- STEP 4 -->
+    <div class="node phase-intermediate delay-4">
+      <div class="node-inner">
+        <span class="step-num">04</span>
+        <div class="node-tag">Phase 04 -- Intermediate</div>
+        <div class="node-title">Data Structures &amp; Collections</div>
+        <div class="node-items">
+          <span class="pill">ArrayList</span>
+          <span class="pill">HashMap</span>
+          <span class="pill">HashSet</span>
+          <span class="pill">LinkedList</span>
+          <span class="pill">Stack / Queue</span>
+          <span class="pill">Generics</span>
+          <span class="pill">Iterator</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="conn-line"></div><div class="conn-diamond"></div><div class="conn-line2"></div></div>
+
+    <!-- STEP 5 -->
+    <div class="node phase-intermediate delay-5">
+      <div class="node-inner">
+        <span class="step-num">05</span>
+        <div class="node-tag">Phase 05 -- Intermediate</div>
+        <div class="node-title">Core Java Features</div>
+        <div class="node-items">
+          <span class="pill">Exception Handling</span>
+          <span class="pill">File I/O</span>
+          <span class="pill">Lambda Expressions</span>
+          <span class="pill">Stream API</span>
+          <span class="pill">Optional</span>
+          <span class="pill">Functional Interfaces</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="conn-line"></div><div class="conn-diamond"></div><div class="conn-line2"></div></div>
+
+    <!-- STEP 6 -->
+    <div class="node phase-intermediate delay-6">
+      <div class="node-inner">
+        <span class="step-num">06</span>
+        <div class="node-tag">Phase 06 -- Intermediate</div>
+        <div class="node-title">Build Tools &amp; Testing</div>
+        <div class="node-items">
+          <span class="pill">Maven</span>
+          <span class="pill">Gradle</span>
+          <span class="pill">JUnit 5</span>
+          <span class="pill">Mockito</span>
+          <span class="pill">Debugging</span>
+          <span class="pill">Logging (SLF4J)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="conn-line"></div><div class="conn-diamond"></div><div class="conn-line2"></div></div>
+
+    <!-- STEP 7 -->
+    <div class="node phase-advanced delay-7">
+      <div class="node-inner">
+        <span class="step-num">07</span>
+        <div class="node-tag">Phase 07 -- Advanced</div>
+        <div class="node-title">Concurrency &amp; Performance</div>
+        <div class="node-items">
+          <span class="pill">Threads &amp; Runnable</span>
+          <span class="pill">ExecutorService</span>
+          <span class="pill">CompletableFuture</span>
+          <span class="pill">synchronized</span>
+          <span class="pill">Locks</span>
+          <span class="pill">JVM Internals</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="conn-line"></div><div class="conn-diamond"></div><div class="conn-line2"></div></div>
+
+    <!-- STEP 8 -->
+    <div class="node phase-advanced delay-8">
+      <div class="node-inner">
+        <span class="step-num">08</span>
+        <div class="node-tag">Phase 08 -- Advanced</div>
+        <div class="node-title">Design Patterns &amp; Architecture</div>
+        <div class="node-items">
+          <span class="pill">SOLID Principles</span>
+          <span class="pill">Singleton</span>
+          <span class="pill">Factory</span>
+          <span class="pill">Builder</span>
+          <span class="pill">Observer</span>
+          <span class="pill">MVC / Layered Arch</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="conn-line"></div><div class="conn-diamond"></div><div class="conn-line2"></div></div>
+
+    <!-- BRANCH: Choose Your Path -->
+    <div class="branch-wrap delay-9">
+      <div class="branch-label">-- Choose Your Path --</div>
+      <div class="branch-cols">
+        <div class="branch-node bn-web">
+          <div class="branch-tag">Web / Spring</div>
+          <div class="branch-title">Spring Boot</div>
+          <div class="branch-pills">
+            <span class="bp">Spring MVC</span>
+            <span class="bp">REST APIs</span>
+            <span class="bp">Spring Security</span>
+            <span class="bp">JPA / Hibernate</span>
+            <span class="bp">Microservices</span>
+          </div>
+        </div>
+        <div class="branch-node bn-mobile">
+          <div class="branch-tag">Android</div>
+          <div class="branch-title">Android Dev</div>
+          <div class="branch-pills">
+            <span class="bp">Android SDK</span>
+            <span class="bp">Activities</span>
+            <span class="bp">Fragments</span>
+            <span class="bp">Room DB</span>
+            <span class="bp">Retrofit</span>
+          </div>
+        </div>
+        <div class="branch-node bn-backend">
+          <div class="branch-tag">Enterprise</div>
+          <div class="branch-title">Jakarta EE</div>
+          <div class="branch-pills">
+            <span class="bp">EJB</span>
+            <span class="bp">JMS</span>
+            <span class="bp">CDI</span>
+            <span class="bp">JAX-RS</span>
+            <span class="bp">WildFly / Payara</span>
+          </div>
+        </div>
+        <div class="branch-node bn-data">
+          <div class="branch-tag">Data / Cloud</div>
+          <div class="branch-title">Data Engineering</div>
+          <div class="branch-pills">
+            <span class="bp">Apache Kafka</span>
+            <span class="bp">Spark</span>
+            <span class="bp">JDBC / R2DBC</span>
+            <span class="bp">Docker</span>
+            <span class="bp">Kubernetes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector delay-10"><div class="conn-line"></div><div class="conn-diamond"></div><div class="conn-line2"></div></div>
+
+    <!-- STEP 9 -->
+    <div class="node phase-expert delay-10">
+      <div class="node-inner">
+        <span class="step-num">09</span>
+        <div class="node-tag">Phase 09 -- Expert</div>
+        <div class="node-title">Production Readiness</div>
+        <div class="node-items">
+          <span class="pill">CI/CD Pipelines</span>
+          <span class="pill">Docker &amp; K8s</span>
+          <span class="pill">Observability</span>
+          <span class="pill">Security Best Practices</span>
+          <span class="pill">Code Reviews</span>
+          <span class="pill">Open Source Contrib</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector delay-11"><div class="conn-line"></div><div class="conn-diamond"></div><div class="conn-line2"></div></div>
+
+    <!-- END -->
+    <div class="end-node delay-11">
+      <div class="end-inner">
+        <div class="end-title">Java Developer</div>
+        <div class="end-sub">// you are production-ready</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--java-orange)"></div>Foundation</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent-blue)"></div>Beginner</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent-green)"></div>Intermediate</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent-purple)"></div>Advanced</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--java-red)"></div>Expert</div>
+  </div>
+
+</div>
+</body>
+</html>
+<script>
+  // Lesson Data
+  const lessons = {
+    "Setup Your Environment": "Install Java JDK, IDE like IntelliJ, and run Hello World.",
+    "Core Java Syntax": "Learn variables, loops, if-else, arrays, and basic Java syntax.",
+    "Object-Oriented Programming": "Understand class, object, inheritance, polymorphism.",
+    "Data Structures & Collections": "Learn ArrayList, HashMap, Stack, Queue.",
+    "Core Java Features": "Learn exception handling, file handling, streams.",
+    "Build Tools & Testing": "Use Maven, Gradle, and testing tools like JUnit.",
+    "Concurrency & Performance": "Learn threads, async, and performance tuning.",
+    "Design Patterns & Architecture": "Learn design patterns like Singleton, Factory.",
+    "Production Readiness": "Deploy apps, CI/CD, Docker, security."
+  };
+
+  // Select all nodes
+  const nodes = document.querySelectorAll(".node-inner");
+
+  nodes.forEach(node => {
+    node.addEventListener("click", function() {
+      const title = this.querySelector(".node-title").innerText;
+
+      // Show lesson
+      document.getElementById("lessonTitle").innerText = title;
+      document.getElementById("lessonContent").innerText = lessons[title] || "No lesson yet.";
+      document.getElementById("lessonBox").style.display = "block";
+
+      // Highlight active
+      nodes.forEach(n => n.style.borderColor = "#2a2f3d");
+      this.style.borderColor = "#f89820";
+
+      // Mark as learned
+      this.style.opacity = "0.7";
+    });
+  });
+
+  function closeLesson() {
+    document.getElementById("lessonBox").style.display = "none";
+  }
+</script>

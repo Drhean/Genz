@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Student Scores</title>
+</head>
+<body>
+    <div id="output" style="font-family: Arial, sans-serif; padding:16px"></div>
+
+    <script>
+        function escapeHtml(text) {
+            if (text == null) return '';
+            return String(text)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        const name = prompt("Enter your name:") || "Unknown";
+        const ageRaw = prompt("Enter your age:");
+        const age = Number.isFinite(Number(ageRaw)) ? parseInt(ageRaw, 10) : "N/A";
+        const major = prompt("Enter your major:") || "N/A";
+        const yearRaw = prompt("Enter your year of study:");
+        const year = Number.isFinite(Number(yearRaw)) ? parseInt(yearRaw, 10) : "N/A";
+
+        const scores = [];
+        for (let i = 0; i < 5; i++) {
+            const subject = prompt(`Enter the name of subject ${i + 1}:`) || `Subject ${i + 1}`;
+            const markRaw = prompt(`Enter the score for ${subject} (use dot for decimals):`);
+            const mark = Number.isFinite(parseFloat(markRaw)) ? parseFloat(markRaw) : 0;
+            scores.push({ subject, mark });
+        }
+
+        const totalScore = scores.reduce((total, item) => total + item.mark, 0);
+        const average = scores.length ? totalScore / scores.length : 0;
+
+        function gradeFromScore(avg) {
+            if (avg >= 90) return 'A';
+            if (avg >= 80) return 'B';
+            if (avg >= 70) return 'C';
+            if (avg >= 60) return 'D';
+            return 'F';
+        }
+
+        const grade = gradeFromScore(average);
+
+        const out = document.getElementById("output");
+        out.innerHTML = `
+            <h2>Student Information</h2>
+            <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+            <p><strong>Age:</strong> ${escapeHtml(age)}</p>
+            <p><strong>Major:</strong> ${escapeHtml(major)}</p>
+            <p><strong>Year of Study:</strong> ${escapeHtml(year)}</p>
+
+            <h3>Scores</h3>
+            <ol>
+                ${scores.map(s => `<li>${escapeHtml(s.subject)}: ${s.mark.toFixed(2)}</li>`).join('')}
+            </ol>
+
+            <p><strong>Total:</strong> ${totalScore.toFixed(2)}</p>
+            <p><strong>Average:</strong> ${average.toFixed(2)}</p>
+            <p><strong>Grade:</strong> ${grade}</p>
+        `;
+    </script>
+</body>
+</html>
