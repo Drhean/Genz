@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food App Pro</title>
+<link rel="stylesheet" href="./coffe-shop.css">
+</head>
+
+<body>
+
+<nav>
+  <h2>🍔 FoodPro</h2>
+  <div onclick="toggleCart()">🛒 <span id="cartCount">0</span></div>
+</nav>
+
+<header>
+  <input type="text" placeholder="Search food..." oninput="searchFood(this.value)">
+</header>
+
+<section id="foodList"></section>
+
+<!-- CART PANEL -->
+<div id="cartPanel" class="cart">
+  <h3>Your Cart</h3>
+  <div id="cartItems"></div>
+  <h4 id="totalPrice">Total: $0</h4>
+  <button onclick="checkout()">Checkout</button>
+</div>
+
+<script src="cart.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
