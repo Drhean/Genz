@@ -29,44 +29,44 @@
   },
   {
     "id": "5",
-    "name": "Thai Tea",
-    "description": "Creamy Thai style tea",
+    "name": "Khmer Tea",
+    "description": "Creamy khmer style tea",
     "price": "2.30",
-    "image": "https://i.imgur.com/thaitea.jpg"
+    "image": "https://www.aimeemars.com/wp-content/uploads/2020/06/Thai-Iced-Tea-in-Plastic-Cup.jpg"
   },
   {
     "id": "6",
     "name": "Orange Juice",
     "description": "Fresh squeezed orange juice",
     "price": "1.80",
-    "image": "https://i.imgur.com/orange.jpg"
+    "image": "https://www.kitchentreaty.com/wp-content/uploads/2025/03/fresh-squeezed-orange-juice-2.jpg"
   },
   {
     "id": "7",
     "name": "Apple Juice",
     "description": "Cold apple juice",
     "price": "1.70",
-    "image": "https://i.imgur.com/apple.jpg"
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmTyWa-02vSabhYq6WqyOasZUb-qFVAHwwTQ&s"
   },
   {
     "id": "8",
     "name": "Lemon Tea",
     "description": "Tea with fresh lemon flavor",
     "price": "1.90",
-    "image": "https://i.imgur.com/lemontea.jpg"
+    "image": "https://leftoversthenbreakfast.com/wp-content/uploads/2022/10/lemon-iced-tea-1200x1800-2.jpeg"
   },
   {
     "id": "9",
     "name": "Cappuccino",
     "description": "Coffee with milk foam",
     "price": "2.80",
-    "image": "https://i.imgur.com/cappuccino.jpg"
+    "image": "https://static.bainet.es/clip/8eff3335-bc0b-49d7-b15d-c2da05ddaf9d_source-aspect-ratio_1600w_0.jpg"
   },
   {
     "id": "10",
     "name": "Chocolate Milk",
     "description": "Sweet chocolate drink",
     "price": "2.10",
-    "image": "https://i.imgur.com/chocolate.jpg"
+    "image": "https://wholefoodsoulfoodkitchen.com/wp-content/uploads/2022/06/healthy-chocolate-milk-with-cocoa-powder-2.jpg"
   }
 ]

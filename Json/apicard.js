@@ -12,4 +12,4 @@ fetch('https://yanphayu-eng.github.io/first-json-about-game/index.json?fbclid=Iw
   </div>
     `;
   }))
-  .catch(err => console.log(err));
+.catch(err => console.log(err));

@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bokor&family=Bungee&family=Fjalla+One&family=Koulen&family=Moul&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rye&display=swap');
+body{
+    width: 100%;
+    height: auto;
+}
+
+.navbar-brand{
+    font-family: "Bungee", sans-serif;
+}
+.offcanvas-title{
+    font-family: "Bungee", sans-serif;
+}
+#cart_count{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -5px;
+    right: -10px;
+}
+.product-card {
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.product-img {
+    height: 200px;
+    object-fit: cover;
+    transition: 0.3s;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.1);
+}
+
+.add-btn {
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background: red;
+    border: none;
+}
+/* Hero Section */
+.hero {
+    height: 70vh;
+    background:  url('https://graphicsfamily.com/wp-content/uploads/edd/2023/04/Black-Friday-Ecommerce-Website-Banner-Design-1180x664.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    color: rgb(247, 244, 246);
+    position: relative;
+
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-overflow: clip;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: fadeUp 1s ease forwards, typing 4s steps(30, end) forwards, blink 0.7s infinite;
+    
+}
+
+.hero p {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.btn-custom {
+    padding: 12px 30px;
+    border-radius: 30px;
+}
+
+/* Animations */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typing Effect */
+.typing {
+    border-right: 3px solid #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 4s steps(30, end) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing {
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* Extra Adjustments */
+@media (max-width: 768px) {
+    .hero {
+        text-align: center;
+    }
+}
