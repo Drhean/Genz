@@ -40,8 +40,10 @@ body{
     transition: 0.3s;
 }
 
+
 .product-card:hover .product-img {
-    transform: scale(1.1);
+    transform: scale(1.08);
+    transition: 0.4s;
 }
 
 .add-btn {
@@ -55,7 +57,8 @@ body{
 }
 /* Hero Section */
 .hero {
-    height: 70vh;
+    min-height: 100vh;
+    padding: 60px 20px;
     background:  url('https://graphicsfamily.com/wp-content/uploads/edd/2023/04/Black-Friday-Ecommerce-Website-Banner-Design-1180x664.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
@@ -78,16 +81,30 @@ body{
 }
 
 .hero h1 {
+    font-family: "Bebas Neue", sans-serif;
     font-size: 32px;
     font-weight: 700;
+    text-transform: capitalize;
+   
+}
+.hero h1 {
+    font-size: clamp(22px, 5vw, 42px);
+    font-weight: 700;
     text-transform: uppercase;
-    text-overflow: clip;
-        white-space: nowrap;
-        overflow: hidden;
-        animation: fadeUp 1s ease forwards, typing 4s steps(30, end) forwards, blink 0.7s infinite;
-    
+
+    opacity: 0;
+    transform: translateY(30px);
+
+    animation: fadeUp 1.2s ease forwards;
 }
 
+/* Animation */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .hero p {
     font-size: 18px;
     margin: 20px 0;
